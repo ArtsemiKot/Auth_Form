@@ -1,0 +1,32 @@
+.wrapper {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .name {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    h1 {
+        font: 500 23px Inter;
+    }
+
+    p {
+        font: 500 14px Inter;
+    }
+
+    button {
+        width: 15%;
+        margin-left: auto;
+    }
+
+    .text {
+        text-align: end;
+    }
+}
