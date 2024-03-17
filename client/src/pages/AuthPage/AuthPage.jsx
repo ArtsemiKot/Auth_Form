@@ -2,31 +2,42 @@ import Header from "../../Components/Header/Header";
 import style from './style.module.scss'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useState } from "react";
+import axios from 'axios'
 
 function AuthPage() {
+    const [data, setData] = useState({})
+
+    function changeState(e) {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
+    async function sendRequest() {
+        const response = await axios.post("http://localhost:3000/user/auth", data, {
+            withCredentials: true,
+        })
+        console.log(response);
+    }
     return (
         <>
             <Header></Header>
             <div className={style.wrapper}>
                 <h1>Sign In</h1>
                 <p>Log in to access your account or create one. Verify your email for seamless access.</p>
-                <p>email</p>
                 <div>
-                    <TextField style={{ width: '100%' }}
+                    <TextField onChange={changeState} style={{ width: '100%' }}
                         id="outlined-error"
-                        label="Emailr"
-                        defaultValue="Your email"
+                        label="Email"
+                        name="email"
                     />
                 </div>
-                <p>password</p>
                 <div>
-                    <TextField style={{ width: '100%' }}
+                    <TextField onChange={changeState} style={{ width: '100%' }}
                         id="outlined-error-helper-text"
                         label="Password"
-                        defaultValue="Must be at least 8 characters."
+                        name="password"
                     />
                 </div>
-                <Button variant="contained">Continue</Button>
+                <Button onClick={sendRequest} variant="contained">Continue</Button>
                 <p className={style.text}>Not registered yet? Sign Up</p>
             </div>
         </>

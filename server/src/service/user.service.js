@@ -8,7 +8,7 @@ async function createUser(name, surname, email, password) {
 
 async function authUser(email, password) {
         const data = await authUserDB(email, password)
-        if (!data.lenght) throw new Error('User is not create')
+        if (!data.length) throw new Error('User is not create')
         return data
 }
 module.exports = { createUser, authUser };
